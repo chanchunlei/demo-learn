@@ -5,11 +5,6 @@
 
 **注意**：IE 8 以及更早的版本不支持 `<canvas>` 元素。
 
-**贴士**：全部例子都分享在我的 GayHub - https://github.com/bxm0927/canvas-special
-
-<p align="center">
-  <a href="https://juejin.im/entry/59901e12f265da3e207709b0/detail"><img src="https://badge.juejin.im/entry/59901e12f265da3e207709b0/likes.svg?style=plastic"></a>
-</p>
 
 ### 1. 尤雨溪个人主页炫彩三角纽带效果，点击还可变换
 
