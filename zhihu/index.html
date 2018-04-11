@@ -29,7 +29,7 @@
   <script>
   // 参考资料：https://github.com/sunshine940326/canvas-nest
 
-  class Circle {
+  class Circle {//类声明
     //创建对象
     //以一个圆为对象
     //设置随机的 x，y坐标，r半径，_mx，_my移动的距离
@@ -43,19 +43,17 @@
       this._my = Math.random();
 
     }
-
     //canvas 画圆和画直线
     //画圆就是正常的用canvas画一个圆
     //画直线是两个圆连线，为了避免直线过多，给圆圈距离设置了一个值，距离很远的圆圈，就不做连线处理
     drawCircle(ctx) {
-      ctx.beginPath();
+      ctx.beginPath();//开启路径
       //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
-      ctx.arc(this.x, this.y, this.r, 0, 360)
-      ctx.closePath();
+      ctx.arc(this.x, this.y, this.r, 0, 360);
       ctx.fillStyle = 'rgba(204, 204, 204, 0.3)';
       ctx.fill();
+      ctx.closePath();
     }
-
     drawLine(ctx, _circle) {
       let dx = this.x - _circle.x;
       let dy = this.y - _circle.y;
@@ -65,12 +63,12 @@
         //开始一条路径，移动到位置 this.x,this.y。创建到达位置 _circle.x,_circle.y 的一条线：
         ctx.moveTo(this.x, this.y); //起始点
         ctx.lineTo(_circle.x, _circle.y); //终点
-        ctx.closePath();
         ctx.strokeStyle = 'rgba(204, 204, 204, 0.3)';
         ctx.stroke();
+        ctx.closePath();
+        
       }
     }
-
     // 圆圈移动
     // 圆圈移动的距离必须在屏幕范围内
     move(w, h) {
@@ -116,7 +114,7 @@
     for (let i = 0; i < circles.length; i++) {
       circles[i].move(w, h);
       circles[i].drawCircle(ctx);
-      for (j = i + 1; j < circles.length; j++) {
+      for (var j = i + 1; j < circles.length; j++) {
         circles[i].drawLine(ctx, circles[j])
       }
     }
@@ -135,9 +133,7 @@
     }
     draw();
   }
-
   window.addEventListener('load', init(60));
-
   window.onmousemove = function(e) {
     e = e || window.event;
     current_circle.x = e.clientX;

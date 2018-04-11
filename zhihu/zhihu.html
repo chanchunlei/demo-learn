@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原子</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html{
+			height: 100%;
+		}
+		body{
+			margin: 0;
+		    height: 100%;
+		    background: #fff;
+		}
+		canvas{
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="mycanvas"></canvas>
+	<script>
+	 var All;
+	 function All() {
+	 	 this.arr = [];
+	 	 this.canvas = document.getElementById('mycanvas');
+		 this.ctx = this.canvas.getContext('2d');//创建上下文
+		 var windowW = document.documentElement.clientWidth;
+         var windowH = document.documentElement.clientHeight;
+         this.x = Math.random() * windowW;//设置随机X坐标
+         this.y = Math.random() * windowH;//设置随机Y坐标
+         this.mx = Math.random();//
+         this.my = Math.random();//
+         this.r = Math.random() * 10;//创建随机半径
+		 this.init = function(num){
+	     	for(var i = 0; i < num; i++){
+               this.arr.push()
+	     	}
+		 }
+		 this.drawCircle = function() {//画圆
+           this.ctx.beginPath();//开始一个路径
+           this.ctx.arc(this.x,this.y,this.r,0,2*Math.PI);//画圆
+           this.ctx.fillStyle = '#999';//填充颜色
+           this.ctx.fill();//填充
+           this.ctx.closePath();//结束路径
+		 }
+		 this.drawLine = function(loop){//画线
+		   let dx = this.x - loop.x;
+		   let dy = this.y - loop.y;
+		   let d = Math.sqrt(dx * dx + dy * dy);
+		   if(d < 150){
+			   this.ctx.beginPath();//开始路径
+	           this.ctx.moveTo(this.x,this.y);//起始点
+	           this.ctx.lineTo(loop.x,loop.y);//连接
+	           this.ctx.strokeStyle = '#999';//设置线颜色
+	           this.ctx.stoke();//填充
+	           this.ctx.closePath();
+		   }
+		 }
+		 this.move = function(w,h) {//圆圈移动，圆圈移动的距离必须在屏幕范围内
+            this.mx = (this.x < w && this.x > 0) ? this.mx : (-this.mx); 
+            this.my = (this.y < h && this.y > 0) ? this.my : (-this.my); 
+            this.x += this.mx / 2;
+            this.y += this.my / 2;
+		 }
+		 this.mouseOn = function() {
+		 	this.ctx.beginPath();
+		 	this.r = 8;
+		 	this.ctx.arc(this.x,this.y,this.r,0,2 * Math.PI);
+		 	this.ctx.fillStyle = 'rgba(255,99,71,.8)';
+		 	this.ctx.fill();
+		 	this.ctx.closePath();
+		 }
+		 this.draw = function() {
+		 	this.ctx.clearRect(0,0,windowW,windowH);
+		 	for(var i = 0; i < arr.length; i++){
+		 		arr[i].move(windowW,windowH);
+		 		arr[i].drawCircle();
+		 		for(var j = i + 1; j < arr.length; j++){
+		 			arr[i].drawLine(arr[j]);
+		 		}
+		 	}
+		 }
+	 }
+     
+    window.onload = function() {
+       All = (new All).init();
+	};
+	window.addEventListener('load', All.init(60));
+	</script>
+</body>
+</html>
